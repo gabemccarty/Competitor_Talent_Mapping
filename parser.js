@@ -191,6 +191,18 @@
     return '';
   }
 
+  /** Normalize to canonical https://www.linkedin.com/in/{slug} to avoid 404s from non-www or malformed URLs */
+  function normalizeLinkedInUrl(url) {
+    if (!url || typeof url !== 'string') return '';
+    var s = url.trim();
+    if (!s) return '';
+    var match = s.match(/linkedin\.com\/in\/([a-zA-Z0-9_-]+)/i);
+    if (match && match[1]) return 'https://www.linkedin.com/in/' + match[1];
+    var slug = s.replace(/^.*\/in\/?|\?.*$/g, '').replace(/^\/+|\/+$/g, '').trim();
+    if (slug) return 'https://www.linkedin.com/in/' + slug;
+    return '';
+  }
+
   function getEmployeeFromRow(row, companyFilter) {
     const company = findColumn(row, ['Company', 'Current Company', 'Employer', 'Organization']);
     if (companyFilter && company && company.toLowerCase().indexOf(companyFilter.toLowerCase()) === -1) return null;
@@ -199,7 +211,8 @@
     const name = (first && last ? first + ' ' + last : '') || findColumn(row, ['Name', 'Full Name']) || 'Unknown';
     const title = findColumn(row, ['Title', 'Job Title', 'Position', 'Current Title']) || '';
     const location = findColumn(row, ['Location', 'Office', 'City', 'Geography']) || '';
-    const linkedin = findColumn(row, ['LinkedIn', 'LinkedIn URL', 'Profile URL']) || '';
+    const linkedinRaw = findColumn(row, ['LinkedIn', 'LinkedIn URL', 'Profile URL']) || '';
+    const linkedin = normalizeLinkedInUrl(linkedinRaw);
     return { name: name, title: title, location: location, linkedin: linkedin, company: company };
   }
 
