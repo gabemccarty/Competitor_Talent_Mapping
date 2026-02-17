@@ -194,11 +194,13 @@
   /** Normalize to canonical https://www.linkedin.com/in/{slug} to avoid 404s from non-www or malformed URLs */
   function normalizeLinkedInUrl(url) {
     if (!url || typeof url !== 'string') return '';
-    var s = url.trim();
+    var s = String(url).replace(/^["']|["']$/g, '').trim();
     if (!s) return '';
-    var match = s.match(/linkedin\.com\/in\/([a-zA-Z0-9_-]+)/i);
+    // Match linkedin.com/in/slug (slug may contain letters, numbers, hyphen, underscore, period)
+    var match = s.match(/linkedin\.com\/in\/([a-zA-Z0-9_.-]+)/i);
     if (match && match[1]) return 'https://www.linkedin.com/in/' + match[1];
-    var slug = s.replace(/^.*\/in\/?|\?.*$/g, '').replace(/^\/+|\/+$/g, '').trim();
+    // Fallback: take path after /in/ and drop query/fragment
+    var slug = s.replace(/^.*\/in\/?/i, '').replace(/[\?#].*$/, '').replace(/\/.*$/, '').replace(/^\/+|\/+$/g, '').trim();
     if (slug) return 'https://www.linkedin.com/in/' + slug;
     return '';
   }
