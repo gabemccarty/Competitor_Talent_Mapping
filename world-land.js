@@ -38,7 +38,8 @@
   ];
 
   window.WORLD_LAND_LOADING = true;
-  var url = 'https://cdn.jsdelivr.net/gh/martynafford/natural-earth-geojson@master/110m/physical/ne_110m_land.json';
+  /* Load from same origin (no CDN = no 404) */
+  var url = 'js/ne_110m_land.json';
   fetch(url)
     .then(function (r) { return r.json(); })
     .then(function (geojson) {
