@@ -1,0 +1,10 @@
+{
+  "name": "talent-map-generator",
+  "version": "1.0.0",
+  "description": "Generate globe-based talent mapping pages from Gem CSV exports",
+  "type": "module",
+  "scripts": {
+    "generate": "node generate.js",
+    "serve": "npx serve dist -p 3333"
+  }
+}

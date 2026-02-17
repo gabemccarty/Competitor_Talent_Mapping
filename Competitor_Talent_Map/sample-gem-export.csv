@@ -1,0 +1,11 @@
+First Name,Last Name,Title,Company,Location,LinkedIn,Email
+Jane,Smith,Director of Engineering,Meta,San Francisco CA,https://linkedin.com/in/janesmith,jane@meta.com
+John,Doe,Senior Software Engineer,Meta,San Francisco CA,https://linkedin.com/in/johndoe,john@meta.com
+Alice,Wong,Product Manager,Meta,New York NY,https://linkedin.com/in/alicewong,alice@meta.com
+Bob,Chen,Staff Engineer,Meta,Seattle WA,https://linkedin.com/in/bobchen,bob@meta.com
+Carol,Kim,Engineering Manager,Meta,London UK,https://linkedin.com/in/carolkim,carol@meta.com
+Dave,Lee,Senior ML Engineer,Meta,San Francisco CA,https://linkedin.com/in/davelee,dave@meta.com
+Eve,Martinez,Director of Product,Meta,New York NY,https://linkedin.com/in/evemartinez,eve@meta.com
+Frank,Moore,Tech Lead,Meta,Seattle WA,https://linkedin.com/in/frankmoore,frank@meta.com
+Grace,Wilson,UX Designer,Meta,London UK,https://linkedin.com/in/gracewilson,grace@meta.com
+Henry,Zhang,Software Engineer,Meta,San Francisco CA,,henry@meta.com
